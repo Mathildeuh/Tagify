@@ -31,3 +31,11 @@ build/
 # IntelliJ IDEA
 .idea/
 *.iml
+
+# Serveur de test run-paper
+/run/
+/run-folia/
+/run-premium/
+
+# Module Premium — code fermé, propriétaire, jamais commité sur ce dépôt public
+/tagify-premium/

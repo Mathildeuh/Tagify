@@ -1,0 +1,219 @@
+# English messages for Tagify — MiniMessage format.
+# The <prefix> tag inserts the plugin prefix defined below.
+# Palette: success #4ADE80 · error #F87171 · neutral gray · accent #C4B5FD
+
+prefix: "<gradient:#5B8DEF:#9B6BFF>✦ Tagify</gradient> <dark_gray>»</dark_gray> "
+
+command:
+  unknown: "<prefix><#F87171>Unknown sub-command: <white><input></white>. Try <#C4B5FD>/tagify help</#C4B5FD>."
+  no-permission: "<prefix><#F87171>You don't have permission to do that."
+  player-only: "<prefix><#F87171>This command must be run in-game."
+  error: "<prefix><#F87171>Something went wrong. Check the console."
+  player-unknown: "<prefix><#F87171>Player not found: <white><player></white> <gray>(never joined this server)."
+
+  set:
+    description: "Set a player's individual prefix or suffix"
+    usage: "<prefix><gray>Usage: <#C4B5FD>/tagify set <player> <prefix|suffix> <value>"
+    too-long: "<prefix><#F87171>Too long: <white><length></white> characters, maximum is <white><max></white>. <gray>(tagify.bypass.length to exceed)"
+    success: "<prefix><#4ADE80><white><player></white>'s <field> is now: <reset><value>"
+
+  remove:
+    description: "Remove a player's individual prefix or suffix"
+    usage: "<prefix><gray>Usage: <#C4B5FD>/tagify remove <player> <prefix|suffix>"
+    success: "<prefix><#4ADE80><white><player></white>'s individual <field> has been removed."
+
+  info:
+    description: "Show a player's active tags and their origin"
+    usage: "<prefix><gray>Usage: <#C4B5FD>/tagify info <player>"
+    header: "<prefix><#C4B5FD>Tags for <white><player></white>:"
+    prefix: "<gray>  Prefix: <reset><value> <dark_gray>(<source>)"
+    suffix: "<gray>  Suffix: <reset><value> <dark_gray>(<source>)"
+    groups: "<gray>  Groups: <white><groups>"
+
+  group:
+    description: "Manage tag groups"
+    usage: "<prefix><gray>Usage: <#C4B5FD>/tagify group <create|delete|list|set|priority|addplayer|removeplayer>"
+    list-empty: "<prefix><gray>No groups defined."
+    list-header: "<prefix><#C4B5FD>Tag groups</#C4B5FD> <dark_gray>—</dark_gray> <gray>hover one for details</gray>"
+    list-entry: "  <dark_gray>▸</dark_gray> <#C4B5FD><group></#C4B5FD>"
+    list-hover:
+      priority: "<gray>Priority:</gray> <white><priority></white>"
+      weight: "<gray>Weight:</gray> <white><weight></white>"
+      prefix: "<gray>Prefix:</gray> <reset><gprefix>"
+      suffix: "<gray>Suffix:</gray> <reset><gsuffix>"
+      members: "<gray>Members:</gray> <white><members></white>"
+      conditions: "<gray>Conditions:</gray> <white><count></white>"
+    create-usage: "<prefix><gray>Usage: <#C4B5FD>/tagify group create <name>"
+    delete-usage: "<prefix><gray>Usage: <#C4B5FD>/tagify group delete <name>"
+    set-usage: "<prefix><gray>Usage: <#C4B5FD>/tagify group set <name> <prefix|suffix> <value>"
+    set-success: "<prefix><#4ADE80>Group <white><group></white>'s <field> is now: <reset><value>"
+    priority-usage: "<prefix><gray>Usage: <#C4B5FD>/tagify group priority <name> <value>"
+    priority-success: "<prefix><#4ADE80>Group <white><group></white> priority set to <white><priority></white>."
+    weight-usage: "<prefix><gray>Usage: <#C4B5FD>/tagify group weight <name> <value>"
+    weight-success: "<prefix><#4ADE80>Group <white><group></white> weight set to <white><weight></white>."
+    condition-usage: "<prefix><gray>Usage: <#C4B5FD>/tagify group condition <name> <worlds|permission|priority-boost-permission|priority-boost> <value>"
+    condition-success: "<prefix><#4ADE80>Condition <white><key></white> of group <white><group></white> is now: <reset><value>"
+    premium-only: "<prefix><#F87171>This action requires the Premium edition <gray>(<white>weight</white> / <white>condition</white>)."
+    addplayer-usage: "<prefix><gray>Usage: <#C4B5FD>/tagify group addplayer <name> <player>"
+    removeplayer-usage: "<prefix><gray>Usage: <#C4B5FD>/tagify group removeplayer <name> <player>"
+    addplayer-success: "<prefix><#4ADE80><white><player></white> added to group <white><group></white>."
+    removeplayer-success: "<prefix><#4ADE80><white><player></white> removed from group <white><group></white>."
+
+  gui:
+    description: "Open the admin interface"
+    disabled: "<prefix><#F87171>The GUI is disabled in the configuration."
+
+  reload:
+    description: "Reload the configuration and language files"
+    success: "<prefix><#4ADE80>Configuration reloaded."
+    failed: "<prefix><#F87171>Reload failed. Check the console."
+
+  convert:
+    description: "Migrate storage between backends"
+    usage: "<prefix><gray>Usage: <#C4B5FD>/tagify convert <source> <target>"
+    unknown-type: "<prefix><#F87171>Unknown storage type (flatfile, mysql, postgresql, mongodb)."
+    same: "<prefix><#F87171>Source and target are the same."
+    unavailable: "<prefix><#F87171>Backend <white><type></white> is unavailable <gray>(Premium edition required)."
+    started: "<prefix><gray>Migrating <white><source></white> <dark_gray>→</dark_gray> <white><target></white>…"
+    failed: "<prefix><#F87171>Migration failed. Check the console."
+    done: "<prefix><#4ADE80>Migration complete: <white><groups></white> group(s), <white><players></white> player(s)."
+    warning: "<prefix><#FBBF24>⚠ <gray><warning>"
+    reminder: "<prefix><gray>Remember to set <white>storage.type</white> to <white><target></white> and restart."
+
+  import:
+    description: "Import an old NametagEdit configuration"
+    usage: "<prefix><gray>Usage: <#C4B5FD>/tagify import legacy"
+    not-found: "<prefix><#F87171>plugins/NametagEdit folder not found."
+    started: "<prefix><gray>Importing NametagEdit…"
+    failed: "<prefix><#F87171>Import failed. Check the console."
+    done: "<prefix><#4ADE80>Import complete: <white><groups></white> group(s), <white><players></white> player(s)."
+    warning: "<prefix><#FBBF24>⚠ <gray><warning>"
+
+  refresh:
+    description: "Force-refresh one player or everyone"
+    all: "<prefix><#4ADE80>Refreshing all online players."
+    player: "<prefix><#4ADE80>Refreshing <white><player></white>."
+
+  version:
+    description: "Show version and integration status"
+    header: "<prefix><#C4B5FD>Tagify <white><version></white><dark_gray>+build.<build></dark_gray> <gray>(<branch> · <hash> · <channel>)"
+    platform: "<gray>  Platform: <white><platform>"
+    storage: "<gray>  Storage: <white><backend>"
+    edition: "<gray>  Edition: <white><edition>"
+    integrations: "<gray>  Integrations: <white><integrations>"
+
+  help:
+    description: "Show this help"
+    header: "<prefix><#C4B5FD>Commands</#C4B5FD> <dark_gray>—</dark_gray> <gray>hover one for details, click to insert it</gray>"
+    entry: "  <dark_gray>▸</dark_gray> <#C4B5FD><command></#C4B5FD>"
+    hover: "<white><description></white><newline><gray>Usage:</gray> <white><usage></white><newline><gray>Permission:</gray> <dark_gray><permission></dark_gray>"
+    footer: "<dark_gray>» <gray><count> command(s) available to you.</gray>"
+
+group:
+  created: "<prefix><#4ADE80>Group <white><group></white> created."
+  create-failed: "<prefix><#F87171>Could not create group <white><group></white> <gray>(already exists?)."
+  deleted: "<prefix><#4ADE80>Group <white><group></white> deleted."
+  not-found: "<prefix><#F87171>Group not found: <white><group></white>."
+
+tag:
+  cleared: "<prefix><#4ADE80>Cleared <white><player></white>'s individual tag."
+
+gui:
+  back: "<gray>◀ Back"
+  previous-page: "<gray>◀ Previous page"
+  next-page: "<gray>Next page ▶"
+  prompt-cancel: "<gray>Type <white>cancel</white> to abort."
+  cancelled: "<prefix><gray>Input cancelled."
+  main:
+    title: "<gradient:#5B8DEF:#9B6BFF>Tagify — Administration</gradient>"
+    groups:
+      name: "<#C4B5FD>Tag groups"
+      lore:
+        - "<gray>Create and edit groups,"
+        - "<gray>their tags and priorities."
+        - ""
+        - "<#C4B5FD>Click <gray>to open"
+    info:
+      name: "<#C4B5FD>About"
+      lore:
+        - "<gray>Edit individual tags with"
+        - "<white>/tagify gui <player>"
+        - "<gray>or <white>/tagify set …"
+    reload:
+      name: "<#C4B5FD>Reload"
+      lore:
+        - "<gray>Reload the configuration"
+        - "<gray>and language files."
+  groups:
+    title: "<dark_gray>Groups <gray>· page <page>"
+    create:
+      name: "<#4ADE80>＋ New group"
+      lore:
+        - "<gray>Create a tag group."
+      prompt: "<prefix><gray>Type the <white>name</white> of the new group in chat."
+    entry:
+      priority: "<gray>Priority: <white><priority>"
+      prefix: "<gray>Prefix: <reset><value>"
+      suffix: "<gray>Suffix: <reset><value>"
+      members: "<gray>Explicit members: <white><count>"
+      hint: "<#C4B5FD>Click <gray>edit <dark_gray>· <#F87171>Right-click <gray>delete"
+  group-editor:
+    title: "<dark_gray>Group <gray><group>"
+    prefix:
+      name: "<#C4B5FD>Prefix"
+      lore:
+        - "<gray>Current: <reset><value>"
+        - ""
+        - "<#C4B5FD>Click <gray>to change"
+      prompt: "<prefix><gray>Type the new <white>prefix</white> in chat <gray>(<white>-</white> to clear)."
+    suffix:
+      name: "<#C4B5FD>Suffix"
+      lore:
+        - "<gray>Current: <reset><value>"
+        - ""
+        - "<#C4B5FD>Click <gray>to change"
+      prompt: "<prefix><gray>Type the new <white>suffix</white> in chat <gray>(<white>-</white> to clear)."
+    priority:
+      name: "<#C4B5FD>Priority: <white><priority>"
+      lore:
+        - "<gray>Left-click <white>+1</white> · right-click <white>-1"
+        - "<gray>Shift + click <white>±10"
+    delete:
+      name: "<#F87171>Delete group"
+      lore:
+        - "<gray>Shift + click to confirm."
+      confirm: "<prefix><#F87171>Shift + click the item to confirm deletion."
+  player-editor:
+    title: "<dark_gray><player>'s tag"
+    prefix:
+      name: "<#C4B5FD>Individual prefix"
+      lore:
+        - "<#C4B5FD>Click <gray>to set"
+      prompt: "<prefix><gray>Type the <white>prefix</white> in chat <gray>(<white>-</white> to clear)."
+    suffix:
+      name: "<#C4B5FD>Individual suffix"
+      lore:
+        - "<#C4B5FD>Click <gray>to set"
+      prompt: "<prefix><gray>Type the <white>suffix</white> in chat <gray>(<white>-</white> to clear)."
+    clear:
+      name: "<#F87171>Clear individual tag"
+      lore:
+        - "<gray>Removes individual prefix and suffix."
+  premium:
+    weight:
+      name: "<#C4B5FD>Weight: <white><weight>"
+      lore:
+        - "<gray>Tab-list ordering weight."
+        - "<gray>Left-click <white>+1</white> · right-click <white>-1"
+        - "<gray>Shift + click <white>±10"
+        - ""
+        - "<#9B6BFF>Premium · used by the weight / automatic sort modes"
+    colors:
+      name: "<#C4B5FD>Colours & gradients"
+      lore:
+        - "<gray>Apply a colour preset to the prefix."
+        - ""
+        - "<#9B6BFF>Premium"
+      title: "<dark_gray>Colours <gray>· <group>"
+      entry:
+        - "<#C4B5FD>Click <gray>solid colour <dark_gray>· <#C4B5FD>Right-click <gray>gradient"

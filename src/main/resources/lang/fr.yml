@@ -1,0 +1,219 @@
+# Messages français de Tagify — format MiniMessage.
+# La balise <prefix> insère le préfixe de plugin ci-dessous.
+# Palette : succès #4ADE80 · erreur #F87171 · neutre gray · accent #C4B5FD
+
+prefix: "<gradient:#5B8DEF:#9B6BFF>✦ Tagify</gradient> <dark_gray>»</dark_gray> "
+
+command:
+  unknown: "<prefix><#F87171>Sous-commande inconnue : <white><input></white>. Essayez <#C4B5FD>/tagify help</#C4B5FD>."
+  no-permission: "<prefix><#F87171>Vous n'avez pas la permission requise."
+  player-only: "<prefix><#F87171>Cette commande doit être exécutée en jeu."
+  error: "<prefix><#F87171>Une erreur est survenue. Consultez la console."
+  player-unknown: "<prefix><#F87171>Joueur introuvable : <white><player></white> <gray>(jamais connecté à ce serveur)."
+
+  set:
+    description: "Définit le préfixe ou le suffixe individuel d'un joueur"
+    usage: "<prefix><gray>Usage : <#C4B5FD>/tagify set <joueur> <prefix|suffix> <valeur>"
+    too-long: "<prefix><#F87171>Trop long : <white><length></white> caractères pour un maximum de <white><max></white>. <gray>(permission tagify.bypass.length pour dépasser)"
+    success: "<prefix><#4ADE80>Le <field> de <white><player></white> est désormais : <reset><value>"
+
+  remove:
+    description: "Retire le préfixe ou le suffixe individuel d'un joueur"
+    usage: "<prefix><gray>Usage : <#C4B5FD>/tagify remove <joueur> <prefix|suffix>"
+    success: "<prefix><#4ADE80>Le <field> individuel de <white><player></white> a été retiré."
+
+  info:
+    description: "Affiche les tags actifs d'un joueur et leur origine"
+    usage: "<prefix><gray>Usage : <#C4B5FD>/tagify info <joueur>"
+    header: "<prefix><#C4B5FD>Tags de <white><player></white> :"
+    prefix: "<gray>  Préfixe : <reset><value> <dark_gray>(<source>)"
+    suffix: "<gray>  Suffixe : <reset><value> <dark_gray>(<source>)"
+    groups: "<gray>  Groupes : <white><groups>"
+
+  group:
+    description: "Gère les groupes de tags"
+    usage: "<prefix><gray>Usage : <#C4B5FD>/tagify group <create|delete|list|set|priority|addplayer|removeplayer>"
+    list-empty: "<prefix><gray>Aucun groupe défini."
+    list-header: "<prefix><#C4B5FD>Groupes de tags</#C4B5FD> <dark_gray>—</dark_gray> <gray>survolez-en un pour le détail</gray>"
+    list-entry: "  <dark_gray>▸</dark_gray> <#C4B5FD><group></#C4B5FD>"
+    list-hover:
+      priority: "<gray>Priorité :</gray> <white><priority></white>"
+      weight: "<gray>Poids :</gray> <white><weight></white>"
+      prefix: "<gray>Préfixe :</gray> <reset><gprefix>"
+      suffix: "<gray>Suffixe :</gray> <reset><gsuffix>"
+      members: "<gray>Membres :</gray> <white><members></white>"
+      conditions: "<gray>Conditions :</gray> <white><count></white>"
+    create-usage: "<prefix><gray>Usage : <#C4B5FD>/tagify group create <nom>"
+    delete-usage: "<prefix><gray>Usage : <#C4B5FD>/tagify group delete <nom>"
+    set-usage: "<prefix><gray>Usage : <#C4B5FD>/tagify group set <nom> <prefix|suffix> <valeur>"
+    set-success: "<prefix><#4ADE80>Le <field> du groupe <white><group></white> est désormais : <reset><value>"
+    priority-usage: "<prefix><gray>Usage : <#C4B5FD>/tagify group priority <nom> <valeur>"
+    priority-success: "<prefix><#4ADE80>Priorité du groupe <white><group></white> définie à <white><priority></white>."
+    weight-usage: "<prefix><gray>Usage : <#C4B5FD>/tagify group weight <nom> <valeur>"
+    weight-success: "<prefix><#4ADE80>Poids du groupe <white><group></white> défini à <white><weight></white>."
+    condition-usage: "<prefix><gray>Usage : <#C4B5FD>/tagify group condition <nom> <worlds|permission|priority-boost-permission|priority-boost> <valeur>"
+    condition-success: "<prefix><#4ADE80>Condition <white><key></white> du groupe <white><group></white> : <reset><value>"
+    premium-only: "<prefix><#F87171>Cette action nécessite l'édition Premium <gray>(<white>weight</white> / <white>condition</white>)."
+    addplayer-usage: "<prefix><gray>Usage : <#C4B5FD>/tagify group addplayer <nom> <joueur>"
+    removeplayer-usage: "<prefix><gray>Usage : <#C4B5FD>/tagify group removeplayer <nom> <joueur>"
+    addplayer-success: "<prefix><#4ADE80><white><player></white> a été ajouté au groupe <white><group></white>."
+    removeplayer-success: "<prefix><#4ADE80><white><player></white> a été retiré du groupe <white><group></white>."
+
+  gui:
+    description: "Ouvre l'interface d'administration"
+    disabled: "<prefix><#F87171>L'interface est désactivée dans la configuration."
+
+  reload:
+    description: "Recharge la configuration et les fichiers de langue"
+    success: "<prefix><#4ADE80>Configuration rechargée."
+    failed: "<prefix><#F87171>Rechargement impossible. Consultez la console."
+
+  convert:
+    description: "Migre le stockage d'un backend vers un autre"
+    usage: "<prefix><gray>Usage : <#C4B5FD>/tagify convert <source> <cible>"
+    unknown-type: "<prefix><#F87171>Type de stockage inconnu (flatfile, mysql, postgresql, mongodb)."
+    same: "<prefix><#F87171>La source et la cible sont identiques."
+    unavailable: "<prefix><#F87171>Backend <white><type></white> indisponible <gray>(édition Premium requise)."
+    started: "<prefix><gray>Migration <white><source></white> <dark_gray>→</dark_gray> <white><target></white> en cours…"
+    failed: "<prefix><#F87171>Migration échouée. Consultez la console."
+    done: "<prefix><#4ADE80>Migration terminée : <white><groups></white> groupe(s), <white><players></white> joueur(s)."
+    warning: "<prefix><#FBBF24>⚠ <gray><warning>"
+    reminder: "<prefix><gray>Pensez à passer <white>storage.type</white> à <white><target></white> puis à redémarrer."
+
+  import:
+    description: "Importe la configuration d'un ancien NametagEdit"
+    usage: "<prefix><gray>Usage : <#C4B5FD>/tagify import legacy"
+    not-found: "<prefix><#F87171>Dossier plugins/NametagEdit introuvable."
+    started: "<prefix><gray>Import de NametagEdit en cours…"
+    failed: "<prefix><#F87171>Import échoué. Consultez la console."
+    done: "<prefix><#4ADE80>Import terminé : <white><groups></white> groupe(s), <white><players></white> joueur(s)."
+    warning: "<prefix><#FBBF24>⚠ <gray><warning>"
+
+  refresh:
+    description: "Force le rafraîchissement d'un joueur ou de tous"
+    all: "<prefix><#4ADE80>Rafraîchissement de tous les joueurs connectés."
+    player: "<prefix><#4ADE80>Rafraîchissement de <white><player></white>."
+
+  version:
+    description: "Affiche la version et l'état des intégrations"
+    header: "<prefix><#C4B5FD>Tagify <white><version></white><dark_gray>+build.<build></dark_gray> <gray>(<branch> · <hash> · <channel>)"
+    platform: "<gray>  Plateforme : <white><platform>"
+    storage: "<gray>  Stockage : <white><backend>"
+    edition: "<gray>  Édition : <white><edition>"
+    integrations: "<gray>  Intégrations : <white><integrations>"
+
+  help:
+    description: "Affiche cette aide"
+    header: "<prefix><#C4B5FD>Commandes</#C4B5FD> <dark_gray>—</dark_gray> <gray>survolez-en une pour le détail, cliquez pour l'insérer</gray>"
+    entry: "  <dark_gray>▸</dark_gray> <#C4B5FD><command></#C4B5FD>"
+    hover: "<white><description></white><newline><gray>Usage :</gray> <white><usage></white><newline><gray>Permission :</gray> <dark_gray><permission></dark_gray>"
+    footer: "<dark_gray>» <gray><count> commande(s) disponible(s).</gray>"
+
+group:
+  created: "<prefix><#4ADE80>Groupe <white><group></white> créé."
+  create-failed: "<prefix><#F87171>Impossible de créer le groupe <white><group></white> <gray>(existe déjà ?)."
+  deleted: "<prefix><#4ADE80>Groupe <white><group></white> supprimé."
+  not-found: "<prefix><#F87171>Groupe introuvable : <white><group></white>."
+
+tag:
+  cleared: "<prefix><#4ADE80>Tag individuel de <white><player></white> retiré."
+
+gui:
+  back: "<gray>◀ Retour"
+  previous-page: "<gray>◀ Page précédente"
+  next-page: "<gray>Page suivante ▶"
+  prompt-cancel: "<gray>Tapez <white>annuler</white> pour abandonner."
+  cancelled: "<prefix><gray>Saisie annulée."
+  main:
+    title: "<gradient:#5B8DEF:#9B6BFF>Tagify — Administration</gradient>"
+    groups:
+      name: "<#C4B5FD>Groupes de tags"
+      lore:
+        - "<gray>Créer et éditer les groupes,"
+        - "<gray>leurs tags et leurs priorités."
+        - ""
+        - "<#C4B5FD>Clic <gray>pour ouvrir"
+    info:
+      name: "<#C4B5FD>À propos"
+      lore:
+        - "<gray>Éditez les tags individuels avec"
+        - "<white>/tagify gui <joueur>"
+        - "<gray>ou <white>/tagify set …"
+    reload:
+      name: "<#C4B5FD>Recharger"
+      lore:
+        - "<gray>Recharge la configuration"
+        - "<gray>et les fichiers de langue."
+  groups:
+    title: "<dark_gray>Groupes <gray>· page <page>"
+    create:
+      name: "<#4ADE80>＋ Nouveau groupe"
+      lore:
+        - "<gray>Crée un groupe de tags."
+      prompt: "<prefix><gray>Entrez le <white>nom</white> du nouveau groupe dans le chat."
+    entry:
+      priority: "<gray>Priorité : <white><priority>"
+      prefix: "<gray>Préfixe : <reset><value>"
+      suffix: "<gray>Suffixe : <reset><value>"
+      members: "<gray>Membres explicites : <white><count>"
+      hint: "<#C4B5FD>Clic <gray>éditer <dark_gray>· <#F87171>Clic droit <gray>supprimer"
+  group-editor:
+    title: "<dark_gray>Groupe <gray><group>"
+    prefix:
+      name: "<#C4B5FD>Préfixe"
+      lore:
+        - "<gray>Actuel : <reset><value>"
+        - ""
+        - "<#C4B5FD>Clic <gray>pour modifier"
+      prompt: "<prefix><gray>Entrez le nouveau <white>préfixe</white> dans le chat <gray>(<white>-</white> pour vider)."
+    suffix:
+      name: "<#C4B5FD>Suffixe"
+      lore:
+        - "<gray>Actuel : <reset><value>"
+        - ""
+        - "<#C4B5FD>Clic <gray>pour modifier"
+      prompt: "<prefix><gray>Entrez le nouveau <white>suffixe</white> dans le chat <gray>(<white>-</white> pour vider)."
+    priority:
+      name: "<#C4B5FD>Priorité : <white><priority>"
+      lore:
+        - "<gray>Clic gauche <white>+1</white> · clic droit <white>-1"
+        - "<gray>Maj + clic <white>±10"
+    delete:
+      name: "<#F87171>Supprimer le groupe"
+      lore:
+        - "<gray>Maj + clic pour confirmer."
+      confirm: "<prefix><#F87171>Maj + clic sur l'objet pour confirmer la suppression."
+  player-editor:
+    title: "<dark_gray>Tag de <gray><player>"
+    prefix:
+      name: "<#C4B5FD>Préfixe individuel"
+      lore:
+        - "<#C4B5FD>Clic <gray>pour définir"
+      prompt: "<prefix><gray>Entrez le <white>préfixe</white> dans le chat <gray>(<white>-</white> pour vider)."
+    suffix:
+      name: "<#C4B5FD>Suffixe individuel"
+      lore:
+        - "<#C4B5FD>Clic <gray>pour définir"
+      prompt: "<prefix><gray>Entrez le <white>suffixe</white> dans le chat <gray>(<white>-</white> pour vider)."
+    clear:
+      name: "<#F87171>Effacer le tag individuel"
+      lore:
+        - "<gray>Retire préfixe et suffixe individuels."
+  premium:
+    weight:
+      name: "<#C4B5FD>Poids : <white><weight>"
+      lore:
+        - "<gray>Poids de tri de la tab list."
+        - "<gray>Clic gauche <white>+1</white> · clic droit <white>-1"
+        - "<gray>Maj + clic <white>±10"
+        - ""
+        - "<#9B6BFF>Premium · utilisé par les modes de tri weight / automatic"
+    colors:
+      name: "<#C4B5FD>Couleurs & gradients"
+      lore:
+        - "<gray>Applique un préréglage de couleur au préfixe."
+        - ""
+        - "<#9B6BFF>Premium"
+      title: "<dark_gray>Couleurs <gray>· <group>"
+      entry:
+        - "<#C4B5FD>Clic <gray>couleur unie <dark_gray>· <#C4B5FD>Clic droit <gray>gradient"

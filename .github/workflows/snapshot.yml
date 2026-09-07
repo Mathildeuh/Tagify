@@ -1,0 +1,66 @@
+name: Snapshot
+
+# Every commit on main publishes a dev build to a rolling "dev" release
+# (snapshot channel, separate from the manually tagged stable releases).
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['docs/**', '*.md', '.github/**']
+
+concurrency:
+  group: snapshot
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build & test
+        run: ./gradlew build --stacktrace
+
+      - name: Metadata
+        id: meta
+        run: |
+          echo "version=$(./gradlew -q printVersion)" >> "$GITHUB_OUTPUT"
+          echo "build=$(git rev-list --count HEAD)" >> "$GITHUB_OUTPUT"
+          echo "short=$(git rev-parse --short=8 HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Changelog since the last stable tag
+        uses: orhun/git-cliff-action@v4
+        id: changelog
+        with:
+          config: cliff.toml
+          args: --unreleased --strip header
+        continue-on-error: true
+
+      - name: Rolling "dev" release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: dev
+          name: "Development build"
+          prerelease: true
+          make_latest: false
+          files: build/libs/Tagify.jar
+          body: |
+            **Automatic development build - do not use in production.**
+
+            - Version: `${{ steps.meta.outputs.version }}+build.${{ steps.meta.outputs.build }}`
+            - Commit: `${{ steps.meta.outputs.short }}`
+
+            ---
+            ${{ steps.changelog.outputs.content }}

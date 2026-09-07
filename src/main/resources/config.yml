@@ -1,0 +1,171 @@
+# ┌─────────────────────────────────────────────────────────────────────────────┐
+# │  Tagify — configuration                                                      │
+# │  Name prefixes / suffixes: tab list, above the head and chat.                │
+# │  Every text value accepts MiniMessage (hex colours, gradients, formatting)   │
+# │  or the legacy format (&a, &l, &#rrggbb).                                     │
+# └─────────────────────────────────────────────────────────────────────────────┘
+
+# Do not edit — used for automatic config migrations.
+config-version: 1
+
+# Message language: lang/<language>.yml (en and fr are bundled).
+language: en
+
+# Verbose logging (diagnostics).
+debug: false
+
+
+# ─────────────────────────────────────────── Storage ────────────────────────────
+storage:
+  # flatfile | mysql | postgresql | mongodb
+  #   flatfile → Free edition (no dependency).
+  #   mysql / postgresql / mongodb → Premium edition only.
+  type: flatfile
+
+  mysql:
+    host: localhost
+    port: 3306
+    database: tagify
+    username: tagify
+    password: ""
+    pool-size: 10
+    # Extra JDBC properties, separated by & (e.g. "useSSL=false&characterEncoding=utf8").
+    properties: ""
+
+  postgresql:
+    host: localhost
+    port: 5432
+    database: tagify
+    username: tagify
+    password: ""
+    pool-size: 10
+    properties: ""
+
+  mongodb:
+    uri: "mongodb://localhost:27017"
+    database: tagify
+
+
+# ─────────────────────────────────── Cache / network sync ──────────────────────
+# Premium: instantly propagates tag changes to every server on the network via
+# Redis pub/sub. NOT a primary storage; graceful fallback if Redis is unavailable.
+cache:
+  redis:
+    enabled: false
+    host: localhost
+    port: 6379
+    password: ""
+    channel: "tagify:sync"
+
+
+# ─────────────────────────────────────────── Refresh ───────────────────────────
+refresh:
+  # Refresh a player when LuckPerms recalculates their permissions (event-driven).
+  on-permission-change: true
+  # Refresh a player when they change world.
+  on-world-change: true
+  # Global periodic refresh, in seconds. 0 = disabled (recommended).
+  interval-seconds: 0
+  # Time window used to batch refresh requests, in ticks (20 ticks = 1s).
+  debounce-ticks: 10
+
+
+# ─────────────────────────────────────────── Display ───────────────────────────
+display:
+  # The tab list and the nametag share the same scoreboard team: if both are
+  # false, Tagify does not touch the scoreboard.
+  apply-to-tablist: true
+  apply-to-nametag: true
+
+  # Chat: only enables an internal formatter if no chat plugin handles it.
+  # Otherwise use the PlaceholderAPI placeholders (%tagify_prefix% / %tagify_suffix%).
+  apply-to-chat: false
+  chat-format: "<prefix><white><name></white><suffix> <dark_gray>»</dark_gray> <gray><message></gray>"
+
+  # Character limit (plain text, formatting excluded). Bypassed with the
+  # tagify.bypass.length permission.
+  max-prefix-length: 32
+  max-suffix-length: 32
+
+  # auto | minimessage | legacy — 'auto' detects the format of each value.
+  format: auto
+
+  # ALWAYS | NEVER | HIDE_FOR_OTHER_TEAMS | HIDE_FOR_OWN_TEAM
+  nametag-visibility: ALWAYS
+  # NEVER | ALWAYS | PUSH_OTHER_TEAMS | PUSH_OWN_TEAM
+  collision-rule: NEVER
+
+  # dedicated → isolated scoreboard (avoids conflicts, hides other plugins' objectives).
+  # main      → main scoreboard (coexists with vanilla / other plugins' objectives).
+  scoreboard: dedicated
+
+  # Colour the player name with the trailing colour of the prefix.
+  color-from-prefix: true
+
+  # Tab-list ordering.
+  tablist-sort:
+    # priority   → order by group priority (Free)
+    # weight     → order by an explicit per-group weight (Premium)
+    # automatic  → auto-computed order: priority band, then tie-breaker (Premium)
+    # disabled   → do not control the tab-list order
+    mode: priority
+    # 'weight' mode: weight assumed for a group that has none.
+    default-weight: 0
+    # 'automatic' mode: tie-breaker within a priority band.
+    #   name | luckperms-weight | join-order
+    automatic-tiebreaker: name
+    # Reverse the whole ordering.
+    reverse: false
+
+
+# ──────────────────────────────────────────── Groups ───────────────────────────
+groups:
+  # Map a permission group (LuckPerms/Vault) that has the same name as a Tagify tag group.
+  map-luckperms-groups: true
+  # Only map groups whose name starts with this prefix ("" = all).
+  luckperms-group-filter: ""
+  # Priority assigned to a newly created group.
+  default-priority: 0
+
+
+# ───────────────────────────────────────── Integrations ────────────────────────
+integrations:
+  luckperms: true
+  placeholderapi: true
+  # Vault: used only as a fallback group source when LuckPerms is absent.
+  vault: false
+  protocollib: false
+  # Sanitize components before applying them (strip control characters, non-characters,
+  # line breaks) to avoid client crashes caused by third-party plugin icons
+  # (ItemsAdder, Oraxen, Nexo).
+  sanitize-third-party-icons: true
+  # Resolve icon placeholders through the third-party plugin APIs rather than raw text.
+  resolve-icon-placeholders: true
+
+
+# ──────────────────────────────────────────────── GUI ──────────────────────────
+gui:
+  enabled: true
+
+
+# ───────────────────────────────────────────── Premium ─────────────────────────
+# These keys only have an effect with the Premium module (Tagify-Premium.jar).
+premium:
+  # builtbybit → verifies the purchase through BuiltByBit's native API on startup.
+  # offline    → no network call, module active (testing).
+  # dev        → same as offline.
+  verify-mode: builtbybit
+  # BuiltByBit "Shared" API token (licence-validation scope for your resources).
+  # Leave empty to read it from the token file bundled in Tagify-Premium.jar instead.
+  builtbybit-token: ""
+  # Grace period (days) when the BuiltByBit API is unreachable, provided a
+  # verification succeeded before.
+  grace-days: 7
+
+
+# ──────────────────────────────────────────── Advanced ─────────────────────────
+advanced:
+  # Indicative size of the async I/O thread pool (storage / network).
+  async-pool-size: 4
+  # Anonymous bStats metrics.
+  metrics: true

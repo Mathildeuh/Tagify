@@ -1,6 +1,79 @@
 name: Tagify
 version: '${version}'
-
-main: fr.mathildeuh.tagify.Tagify
-api-version: '26.2'
+main: fr.mathildeuh.tagify.TagifyPlugin
+api-version: '${apiVersion}'
+description: Préfixes et suffixes de pseudo modernes — tab list, au-dessus de la tête et chat.
+author: Mathildeuh
+website: https://github.com/Mathildeuh/Tagify
 load: POSTWORLD
+folia-supported: true
+softdepend:
+  - LuckPerms
+  - PlaceholderAPI
+  - Vault
+  - ProtocolLib
+  - ItemsAdder
+  - Oraxen
+  - Nexo
+
+commands:
+  tagify:
+    description: Commande principale de Tagify (gestion des préfixes/suffixes).
+    aliases: [tgy, ty, tfy]
+    permission: tagify.use
+    usage: /tagify help
+
+permissions:
+  tagify.use:
+    description: Accès aux commandes de base (help, version).
+    default: true
+  tagify.admin.set:
+    description: Définir le préfixe/suffixe individuel d'un joueur.
+    default: op
+  tagify.admin.remove:
+    description: Retirer le préfixe/suffixe individuel d'un joueur.
+    default: op
+  tagify.admin.info:
+    description: Consulter les tags actifs d'un joueur et leur origine.
+    default: op
+  tagify.admin.group:
+    description: Gérer les groupes de tags.
+    default: op
+  tagify.admin.gui:
+    description: Ouvrir l'interface d'administration.
+    default: op
+  tagify.admin.reload:
+    description: Recharger la configuration.
+    default: op
+  tagify.admin.convert:
+    description: Migrer le stockage entre backends.
+    default: op
+  tagify.admin.import:
+    description: Importer la configuration d'un ancien NametagEdit.
+    default: op
+  tagify.admin.refresh:
+    description: Forcer le rafraîchissement des tags.
+    default: op
+  tagify.bypass.length:
+    description: Dépasser la limite de caractères des préfixes/suffixes.
+    default: op
+  tagify.admin:
+    description: Ensemble des permissions d'administration courantes.
+    default: op
+    children:
+      tagify.admin.set: true
+      tagify.admin.remove: true
+      tagify.admin.info: true
+      tagify.admin.group: true
+      tagify.admin.gui: true
+      tagify.admin.reload: true
+      tagify.admin.refresh: true
+  tagify.*:
+    description: Toutes les permissions de Tagify.
+    default: op
+    children:
+      tagify.use: true
+      tagify.admin: true
+      tagify.admin.convert: true
+      tagify.admin.import: true
+      tagify.bypass.length: true

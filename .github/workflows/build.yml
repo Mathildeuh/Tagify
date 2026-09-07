@@ -1,0 +1,49 @@
+name: Build
+
+on:
+  push:
+    branches: ['**']
+    tags-ignore: ['v*']
+    paths-ignore: ['docs/**', '*.md']
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # tags requis pour le versioning dérivé de Git
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build & test
+        run: ./gradlew build --stacktrace
+
+      - name: Version
+        id: version
+        run: echo "value=$(./gradlew -q printVersion)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Tagify-${{ steps.version.outputs.value }}
+          path: build/libs/Tagify.jar
+          if-no-files-found: error
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: build/reports/tests/
+          if-no-files-found: ignore

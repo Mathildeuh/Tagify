@@ -1,0 +1,6 @@
+name: Tagify
+version: '${version}'
+
+main: fr.mathildeuh.tagify.Tagify
+api-version: '26.2'
+load: POSTWORLD

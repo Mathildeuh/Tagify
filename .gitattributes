@@ -1,0 +1,13 @@
+# Normaliser les fins de ligne
+* text=auto
+
+# Scripts qui doivent garder des fins de ligne LF
+*.sh text eol=lf
+gradlew text eol=lf
+
+# Scripts Windows en CRLF
+*.bat text eol=crlf
+gradlew.bat text eol=crlf
+
+# Fichiers binaires
+*.jar binary
